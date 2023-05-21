@@ -268,7 +268,7 @@ namespace _2kurs0
             DB dbR = new DB();
             DataTable tableR = new DataTable();
             MySqlDataAdapter adapterR = new MySqlDataAdapter();
-            MySqlCommand commandR = new MySqlCommand("Select * from `request`", dbR.getConnection());
+            MySqlCommand commandR = new MySqlCommand("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff", dbR.getConnection());
             adapterR.SelectCommand = commandR;
             adapterR.Fill(tableR);
             dgvRequest.DataSource = tableR;
@@ -277,29 +277,32 @@ namespace _2kurs0
             dgvRequest.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRequest.Columns[0].FillWeight = 35;
             dgvRequest.Columns[0].ReadOnly = true;
-            dgvRequest.Columns[1].HeaderText = "Код Сотрудника";
+            dgvRequest.Columns[1].HeaderText = "Имя";
             dgvRequest.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[1].FillWeight = 220;
-            dgvRequest.Columns[2].HeaderText = "Дата создания";
+            dgvRequest.Columns[1].FillWeight = 100;
+            dgvRequest.Columns[2].HeaderText = "Фамилия";
             dgvRequest.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[2].FillWeight = 85;
-            dgvRequest.Columns[3].HeaderText = "Код Оборудования";
+            dgvRequest.Columns[2].FillWeight = 100;
+            dgvRequest.Columns[3].HeaderText = "Дата создания";
             dgvRequest.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[3].FillWeight = 75;
-            dgvRequest.Columns[4].HeaderText = "Код Материала";
+            dgvRequest.Columns[3].FillWeight = 85;
+            dgvRequest.Columns[4].HeaderText = "Код Оборудования";
             dgvRequest.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[4].FillWeight = 85;
-            dgvRequest.Columns[5].HeaderText = "Количество";
+            dgvRequest.Columns[4].FillWeight = 90;
+            dgvRequest.Columns[5].HeaderText = "Код Материала";
             dgvRequest.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[5].FillWeight = 100;
-            adddeleteColumns(dgvRequest, 6);
+            dgvRequest.Columns[5].FillWeight = 90;
+            dgvRequest.Columns[6].HeaderText = "Количество";
+            dgvRequest.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvRequest.Columns[6].FillWeight = 100;
+            adddeleteColumns(dgvRequest, 7);
         }
         public void MyReq()
         {
             DB dbMyR = new DB();
             DataTable tableMyR = new DataTable();
             MySqlDataAdapter adapterMyR = new MySqlDataAdapter();
-            MySqlCommand commandMyR = new MySqlCommand("Select `idrequest`, `reqdata`, `equipment_idequipment`, `material_idmaterial`, `reqnumber` from `request` where `staff_idStaff` = @Sid", dbMyR.getConnection());
+            MySqlCommand commandMyR = new MySqlCommand("SELECT request.idrequest, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial where `staff_idStaff` = @Sid", dbMyR.getConnection());
             commandMyR.Parameters.Add("@Sid", MySqlDbType.VarChar).Value = Global.GlobalVar;
             adapterMyR.SelectCommand = commandMyR;
             adapterMyR.Fill(tableMyR);
@@ -311,10 +314,10 @@ namespace _2kurs0
             dgvMyReq.Columns[1].HeaderText = "Дата создания";
             dgvMyReq.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //dgvMyReq.Columns[1].FillWeight = 85;
-            dgvMyReq.Columns[2].HeaderText = "Код Оборудования";
+            dgvMyReq.Columns[2].HeaderText = "Оборудование";
             dgvMyReq.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //dgvMyReq.Columns[2].FillWeight = 75;
-            dgvMyReq.Columns[3].HeaderText = "Код Материала";
+            dgvMyReq.Columns[3].HeaderText = "Материал";
             dgvMyReq.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //dgvMyReq.Columns[3].FillWeight = 85;
             dgvMyReq.Columns[4].HeaderText = "Количество";
@@ -418,7 +421,7 @@ namespace _2kurs0
             DB dbA = new DB();
             DataTable tableA = new DataTable();
             MySqlDataAdapter adapterA = new MySqlDataAdapter();
-            MySqlCommand commandA = new MySqlCommand("Select * from `authorization`", dbA.getConnection());
+            MySqlCommand commandA = new MySqlCommand("SELECT idAuthorization, staff.name, staff.surname, login, pass, perms, confirm FROM `ISPr23-35_TazetdinovRR_kurs`.authorization LEFT OUTER JOIN staff ON authorization.idstaff = staff.idStaff", dbA.getConnection());
             adapterA.SelectCommand = commandA;
             adapterA.Fill(tableA);
             dgvAuth.DataSource = tableA;
@@ -427,21 +430,24 @@ namespace _2kurs0
             dgvAuth.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAuth.Columns[0].FillWeight = 35;
             dgvAuth.Columns[0].ReadOnly = true;
-            dgvAuth.Columns[1].HeaderText = "Код Сотрудника";
+            dgvAuth.Columns[1].HeaderText = "Имя";
             dgvAuth.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[1].FillWeight = 75;
-            dgvAuth.Columns[2].HeaderText = "Логин";
+            dgvAuth.Columns[1].FillWeight = 100;
+            dgvAuth.Columns[2].HeaderText = "Фамилия";
             dgvAuth.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[2].FillWeight = 150;
-            dgvAuth.Columns[3].HeaderText = "Пароль";
+            dgvAuth.Columns[2].FillWeight = 100;
+            dgvAuth.Columns[3].HeaderText = "Логин";
             dgvAuth.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[3].FillWeight = 150;
-            dgvAuth.Columns[4].HeaderText = "Уровень доступа";
+            dgvAuth.Columns[3].FillWeight = 100;
+            dgvAuth.Columns[4].HeaderText = "Пароль";
             dgvAuth.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[4].FillWeight = 100;
-            dgvAuth.Columns[5].HeaderText = "Подтверждение";
+            dgvAuth.Columns[4].FillWeight = 150;
+            dgvAuth.Columns[5].HeaderText = "Уровень доступа";
             dgvAuth.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAuth.Columns[5].FillWeight = 100;
+            dgvAuth.Columns[6].HeaderText = "Подтверждение";
+            dgvAuth.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvAuth.Columns[6].FillWeight = 25;
             #endregion
             #region MyRequest FILL
 
