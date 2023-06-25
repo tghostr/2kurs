@@ -627,7 +627,7 @@ namespace _2kurs0
             {
                 tbAuthSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT * FROM authorization WHERE CONCAT(`idAuthorization`, `idstaff`, `login`, `pass`, `perms`, `confirm`) like '%" + tbAuthSearch.Text + "%'", dgvAuth);
+            EditMaterial.DisplayAndSearch("SELECT idAuthorization, staff.name, staff.surname, login, pass, perms, confirm FROM `ISPr23-35_TazetdinovRR_kurs`.authorization LEFT OUTER JOIN staff ON authorization.idstaff = staff.idStaff WHERE CONCAT(idAuthorization, staff.name, staff.surname, login, pass, perms, confirm) like '%" + tbAuthSearch.Text + "%'", dgvAuth);
         }
         private void tbRequestSearch_TextChanged(object sender, EventArgs e)
         {
@@ -635,7 +635,7 @@ namespace _2kurs0
             {
                 tbRequestSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT * FROM request WHERE CONCAT(`idrequest`, `staff_idStaff`, `reqdata`, `equipment_idequipment`, `material_idmaterial`, `reqnumber`) like '%" + tbRequestSearch.Text + "%'", dgvRequest);
+            EditMaterial.DisplayAndSearch("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff WHERE concat_ws(idrequest, name, surname, reqdata, emname, maname, reqnumber) like '%" + tbRequestSearch.Text + "%'", dgvRequest);
         }
         private void tbSearchEM_TextChanged(object sender, EventArgs e)
         {
