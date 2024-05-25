@@ -12,6 +12,7 @@ using Image = System.Drawing.Image;
 using DGVPrinterHelper;
 using System.ComponentModel.Design;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace _2kurs0
 {
@@ -19,7 +20,9 @@ namespace _2kurs0
     {
         private btMenu currentBtn;
         bool sidebarExpand;
-
+        private MySqlDataAdapter adapterReq = new MySqlDataAdapter();
+        private DataSet dataSet = null;
+        private MySqlCommandBuilder sqlBuilder = null;
         Edit form;
         //long idStaff = Convert.ToInt64(Global.GlobalVar);
         public MainForm()
@@ -34,7 +37,7 @@ namespace _2kurs0
 
             if (Global.GlobalPerms == "1")
             {
-                
+
                 btMenuEquip.Visible = false;
                 btMenuMaterial.Visible = false;
                 btMenuStaff.Visible = false;
@@ -72,7 +75,7 @@ namespace _2kurs0
                 currentBtn.BackColor = Color.FromArgb(41, 41, 49);
             }
         }
-        public void addColumns(DataGridView dgv)
+        public void addColumns(DataGridView dgv, int colindex)
         {
             DataGridViewButtonColumn editBtColumn = new DataGridViewButtonColumn();
             editBtColumn.Name = "Edit";
@@ -83,7 +86,7 @@ namespace _2kurs0
             editBtColumn.UseColumnTextForButtonValue = true;
             editBtColumn.FlatStyle = FlatStyle.Flat;
 
-            int columnEIndex = 6;
+            int columnEIndex = colindex;
             if (dgv.Columns["Edit"] == null)
             {
                 dgv.Columns.Insert(columnEIndex, editBtColumn);
@@ -96,7 +99,37 @@ namespace _2kurs0
             deleteBtColumn.DefaultCellStyle.BackColor = Color.LightCoral;
             deleteBtColumn.UseColumnTextForButtonValue = true;
             deleteBtColumn.FlatStyle = FlatStyle.Flat;
-            int columnDIndex = 7;
+            int columnDIndex = colindex +1;
+            if (dgv.Columns["Delete"] == null)
+            {
+                dgv.Columns.Insert(columnDIndex, deleteBtColumn);
+            }
+        }
+        public void addReqColumns(DataGridView dgv, int colindex)
+        {
+            DataGridViewButtonColumn editBtColumn = new DataGridViewButtonColumn();
+            editBtColumn.Name = "Edit";
+            editBtColumn.HeaderText = string.Empty;
+            editBtColumn.Text = "Приход";
+            editBtColumn.Width = 80;
+            editBtColumn.DefaultCellStyle.BackColor = Color.LightBlue;
+            editBtColumn.UseColumnTextForButtonValue = true;
+            editBtColumn.FlatStyle = FlatStyle.Flat;
+
+            int columnEIndex = colindex;
+            if (dgv.Columns["Edit"] == null)
+            {
+                dgv.Columns.Insert(columnEIndex, editBtColumn);
+            }
+            DataGridViewButtonColumn deleteBtColumn = new DataGridViewButtonColumn();
+            deleteBtColumn.Name = "Delete";
+            deleteBtColumn.HeaderText = string.Empty;
+            deleteBtColumn.Text = "Удалить";
+            deleteBtColumn.Width = 80;
+            deleteBtColumn.DefaultCellStyle.BackColor = Color.LightCoral;
+            deleteBtColumn.UseColumnTextForButtonValue = true;
+            deleteBtColumn.FlatStyle = FlatStyle.Flat;
+            int columnDIndex = colindex + 1;
             if (dgv.Columns["Delete"] == null)
             {
                 dgv.Columns.Insert(columnDIndex, deleteBtColumn);
@@ -116,6 +149,24 @@ namespace _2kurs0
             if (dgv.Columns["Delete"] == null)
             {
                 dgv.Columns.Insert(columnDIndex, deleteBtColumn);
+            }
+        }
+
+        public void addeditColumns(DataGridView dgv, int colindex)
+        {
+            DataGridViewButtonColumn editBtColumn = new DataGridViewButtonColumn();
+            editBtColumn.Name = "Edit";
+            editBtColumn.HeaderText = string.Empty;
+            editBtColumn.Text = "Изменить";
+            editBtColumn.Width = 80;
+            editBtColumn.DefaultCellStyle.BackColor = Color.LightBlue;
+            editBtColumn.UseColumnTextForButtonValue = true;
+            editBtColumn.FlatStyle = FlatStyle.Flat;
+
+            int columnEIndex = colindex;
+            if (dgv.Columns["Edit"] == null)
+            {
+                dgv.Columns.Insert(columnEIndex, editBtColumn);
             }
         }
         #region SideBar
@@ -248,7 +299,7 @@ namespace _2kurs0
         }
         private void topPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            if(btMax.Visible == false)
+            if (btMax.Visible == false)
             {
                 btMin_Click(sender, e);
             }
@@ -263,15 +314,40 @@ namespace _2kurs0
             lblTab.Text = btMenuProfile.TabName;
         }
         #endregion
+        private void ReloadReq()
+        {
+            try
+            {
+                
+                dataSet.Tables["request"].Clear();
+
+                adapterReq.Fill(dataSet, "request");
+
+                dgvRequest.DataSource = dataSet.Tables["request"];
+
+            }
+            catch (Exception exep)
+            {
+                MessageBox.Show(exep.Message, "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void ReqFILL()
         {
+            dgvRequest.DataSource = null;
             DB dbR = new DB();
             DataTable tableR = new DataTable();
             MySqlDataAdapter adapterR = new MySqlDataAdapter();
-            MySqlCommand commandR = new MySqlCommand("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff", dbR.getConnection());
+            MySqlCommand commandR = new MySqlCommand("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request " +
+                "LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment " +
+                "LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial " +
+                "LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff where requestcomplete is null", dbR.getConnection());
             adapterR.SelectCommand = commandR;
             adapterR.Fill(tableR);
             dgvRequest.DataSource = tableR;
+
+            adapterReq = new MySqlDataAdapter("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff where requestcomplete is null", dbR.getConnection());
+            dataSet = new DataSet();
+            adapterReq.Fill(dataSet, "request");
 
             dgvRequest.Columns[0].HeaderText = "#";
             dgvRequest.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -295,7 +371,7 @@ namespace _2kurs0
             dgvRequest.Columns[6].HeaderText = "Количество";
             dgvRequest.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRequest.Columns[6].FillWeight = 100;
-            adddeleteColumns(dgvRequest, 7);
+            addReqColumns(dgvRequest, 7);
         }
         public void MyReq()
         {
@@ -306,7 +382,7 @@ namespace _2kurs0
             commandMyR.Parameters.Add("@Sid", MySqlDbType.VarChar).Value = Global.GlobalVar;
             adapterMyR.SelectCommand = commandMyR;
             adapterMyR.Fill(tableMyR);
-            dgvMyReq.DataSource = tableMyR;
+            dgvЫ.DataSource = tableMyR;
 
             dgvMyReq.Columns[0].HeaderText = "#";
             dgvMyReq.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -358,7 +434,7 @@ namespace _2kurs0
             dgvEquip.Columns[5].HeaderText = "Стоимость";
             dgvEquip.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvEquip.Columns[5].FillWeight = 100;
-            addColumns(dgvEquip);
+            addColumns(dgvEquip, 6);
 
 
             #endregion
@@ -390,7 +466,7 @@ namespace _2kurs0
             dgvMaterial.Columns[5].HeaderText = "Стоимость";
             dgvMaterial.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvMaterial.Columns[5].FillWeight = 100;
-            addColumns(dgvMaterial);
+            addColumns(dgvMaterial, 6);
             #endregion
             #region Staff FILL
             DB dbS = new DB();
@@ -451,7 +527,7 @@ namespace _2kurs0
             #endregion
             #region MyRequest FILL
 
-            
+
 
             #endregion
             #region NR FILL
@@ -599,7 +675,7 @@ namespace _2kurs0
         #region Search
         private void tbEquipSearch_TextChanged(object sender, EventArgs e)
         {
-            if(tbEquipSearch.Text == "'")
+            if (tbEquipSearch.Text == "'")
             {
                 tbEquipSearch.Text = "";
             }
@@ -747,29 +823,117 @@ namespace _2kurs0
         }
         private void dgvRequest_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            try
             {
-                if (MessageBox.Show("Вы уверены, что хотите удалить эту заявку", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (e.ColumnIndex == 1)
                 {
-                    
-                    DB db = new DB();
-                    MySqlCommand commandMD = new MySqlCommand("DELETE FROM `request` WHERE `idrequest` = @Rid", db.getConnection());
-                    commandMD.Parameters.Add("@Rid", MySqlDbType.VarChar).Value = dgvRequest.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    db.openConnection();
-                    try
+                    if (MessageBox.Show("Вы уверены, что хотите удалить эту заявку", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        commandMD.ExecuteNonQuery();
-                        MessageBox.Show("Заявка удалена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        DB db = new DB();
+                        MySqlCommand commandMD = new MySqlCommand("DELETE FROM `request` WHERE `idrequest` = @Rid", db.getConnection());
+                        commandMD.Parameters.Add("@Rid", MySqlDbType.VarChar).Value = dgvRequest.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        db.openConnection();
+                        try
+                        {
+                            commandMD.ExecuteNonQuery();
+                            MessageBox.Show("Заявка удалена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show("Заявка не удалена \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        db.closeConnection();
+                        dgvRequest.DataSource = null;
+                        ReloadReq();
+                        DisplayR();
                     }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Заявка не удалена \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    db.closeConnection();
-                    DisplayR();
+                    return;
                 }
-                return;
+                else if(e.ColumnIndex == 0)
+                {
+                    if (MessageBox.Show("Подтверждение выполнения", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+
+                        string kolzayavka = dgvRequest.Rows[e.RowIndex].Cells[8].Value.ToString();
+                        string maname = dgvRequest.Rows[e.RowIndex].Cells[7].Value.ToString();
+                        string emname = dgvRequest.Rows[e.RowIndex].Cells[6].Value.ToString();
+                        string idsh = dgvRequest.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        if (maname != "")
+                        {
+                            DB dbE = new DB();
+                            MySqlCommand commandE = new MySqlCommand($"update material set `manumber` = `manumber` + {Convert.ToInt32(kolzayavka)}  where maname = '{maname}';", dbE.getConnection());
+
+                            dbE.openConnection();
+                            try
+                            {
+                                commandE.ExecuteNonQuery();
+                                MessageBox.Show("Количество материалов изменено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                DB dbR = new DB();
+                                MySqlCommand commandR = new MySqlCommand($"update request set `requestcomplete` = '+'  where `idrequest` = '{idsh}'", dbR.getConnection());
+                                dbR.openConnection();
+                                try
+                                {
+                                    commandR.ExecuteNonQuery();
+                                    MessageBox.Show("Заявка выполнена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    ReloadReq();
+                                }
+                                catch (MySqlException ex)
+                                {
+                                    MessageBox.Show("Ошибка выполнения заявки \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                dbR.closeConnection();
+                            }
+                            catch (MySqlException ex)
+                            {
+                                MessageBox.Show("Количество материалов не изменено \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            dbE.closeConnection();
+
+                            return;
+                        }
+                        else if (emname != "")
+                        {
+                            DB dbE = new DB();
+                            MySqlCommand commandE = new MySqlCommand($"update equipment set `emnumber` = `emnumber` + {Convert.ToInt32(kolzayavka)}  where emname = '{emname}';", dbE.getConnection());
+
+                            dbE.openConnection();
+                            try
+                            {
+                                commandE.ExecuteNonQuery();
+                                MessageBox.Show("Количество оборудования изменено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                DB dbR = new DB();
+                                MySqlCommand commandR = new MySqlCommand($"update request set `requestcomplete` = '+'  where `idrequest` = '{idsh}'", dbR.getConnection());
+                                dbR.openConnection();
+                                try
+                                {
+                                    commandR.ExecuteNonQuery();
+                                    MessageBox.Show("Заявка выполнена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    ReloadReq();
+                                }
+                                catch (MySqlException ex)
+                                {
+                                    MessageBox.Show("Ошибка выполнения заявки \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                dbR.closeConnection();
+                            }
+                            catch (MySqlException ex)
+                            {
+                                MessageBox.Show("Количество оборудования не изменено \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            dbE.closeConnection();
+
+                            return;
+                        }
+                    }
+                    return;
+
+                    
+
+                }
             }
+            catch(MySqlException ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
         private void btConfirmAuth_Click(object sender, EventArgs e)
         {
@@ -890,6 +1054,8 @@ namespace _2kurs0
         {
             if (cbRequestOption.Text == "Оборудование")
             {
+
+
                 dgvMaNewReq.Visible = false;
                 dgvEqNewReq.Visible = true;
             }
@@ -929,8 +1095,12 @@ namespace _2kurs0
                     {
                         items[i] = row.Cells[i].Value;
                     }
+                    //items[3] = row.Cells[3].Value = 1;
+                    //dgvNewRequest.Rows.Add(items);
                     items[3] = row.Cells[3].Value = 1;
+                    MainForm_Load(sender, e);
                     dgvNewRequest.Rows.Add(items);
+
                     // fromDGV.Rows.Delete(row);
                 }
             }
@@ -944,6 +1114,7 @@ namespace _2kurs0
                         items[i] = row.Cells[i].Value;
                     }
                     items[3] = row.Cells[3].Value = 1;
+                    MainForm_Load(sender, e);
                     dgvNewRequest.Rows.Add(items);
                     // fromDGV.Rows.Delete(row);
                 }
@@ -984,11 +1155,6 @@ namespace _2kurs0
         {
             if (cbRequestOption.Text == "")
                 MessageBox.Show("Выберите таблицу ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            
-
-
-
 
 
             DB dbNewR = new DB();
