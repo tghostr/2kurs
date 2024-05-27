@@ -28,465 +28,447 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthForm));
-            this.btClose = new System.Windows.Forms.Button();
-            this.btTray = new System.Windows.Forms.Button();
-            this.topPanel = new System.Windows.Forms.Panel();
-            this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
-            this.SignUI = new _2kurs0.TabControlWithoutHeader();
-            this.SignInPage = new System.Windows.Forms.TabPage();
-            this.lblReg = new System.Windows.Forms.Label();
-            this.SearchPanel = new System.Windows.Forms.Panel();
-            this.tbLogin = new System.Windows.Forms.TextBox();
-            this.btSignIn = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cbPass = new System.Windows.Forms.CheckBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.SignUpPage = new System.Windows.Forms.TabPage();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.tbRegName = new System.Windows.Forms.TextBox();
-            this.RegBirth = new System.Windows.Forms.DateTimePicker();
-            this.lblLog = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.tbRegSurname = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.tbRegLog = new System.Windows.Forms.TextBox();
-            this.btSignUp = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.tbRegPass = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTab = new System.Windows.Forms.Label();
-            this.topPanel.SuspendLayout();
-            this.SignUI.SuspendLayout();
-            this.SignInPage.SuspendLayout();
-            this.SearchPanel.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.SignUpPage.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            btClose = new Button();
+            btTray = new Button();
+            topPanel = new Panel();
+            sidebarTimer = new System.Windows.Forms.Timer(components);
+            SignUI = new TabControlWithoutHeader();
+            SignInPage = new TabPage();
+            lblReg = new Label();
+            SearchPanel = new Panel();
+            tbLogin = new TextBox();
+            btSignIn = new Button();
+            panel2 = new Panel();
+            cbPass = new CheckBox();
+            tbPassword = new TextBox();
+            SignUpPage = new TabPage();
+            panel6 = new Panel();
+            tbRegName = new TextBox();
+            RegBirth = new DateTimePicker();
+            lblLog = new Label();
+            panel5 = new Panel();
+            tbRegSurname = new TextBox();
+            panel3 = new Panel();
+            tbRegLog = new TextBox();
+            btSignUp = new Button();
+            panel4 = new Panel();
+            tbRegPass = new TextBox();
+            panel1 = new Panel();
+            lblTab = new Label();
+            topPanel.SuspendLayout();
+            SignUI.SuspendLayout();
+            SignInPage.SuspendLayout();
+            SearchPanel.SuspendLayout();
+            panel2.SuspendLayout();
+            SignUpPage.SuspendLayout();
+            panel6.SuspendLayout();
+            panel5.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // btClose
             // 
-            this.btClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btClose.FlatAppearance.BorderSize = 0;
-            this.btClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.btClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.btClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btClose.ForeColor = System.Drawing.Color.Black;
-            this.btClose.Image = ((System.Drawing.Image)(resources.GetObject("btClose.Image")));
-            this.btClose.Location = new System.Drawing.Point(310, 0);
-            this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(40, 30);
-            this.btClose.TabIndex = 3;
-            this.btClose.UseVisualStyleBackColor = true;
-            this.btClose.Click += new System.EventHandler(this.btClose_Click);
+            btClose.Dock = DockStyle.Right;
+            btClose.FlatAppearance.BorderSize = 0;
+            btClose.FlatAppearance.MouseDownBackColor = Color.Red;
+            btClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 77, 77);
+            btClose.FlatStyle = FlatStyle.Flat;
+            btClose.ForeColor = Color.Black;
+            btClose.Image = (Image)resources.GetObject("btClose.Image");
+            btClose.Location = new Point(310, 0);
+            btClose.Name = "btClose";
+            btClose.Size = new Size(40, 30);
+            btClose.TabIndex = 3;
+            btClose.UseVisualStyleBackColor = true;
+            btClose.Click += btClose_Click;
             // 
             // btTray
             // 
-            this.btTray.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btTray.FlatAppearance.BorderSize = 0;
-            this.btTray.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(81)))), ((int)(((byte)(89)))));
-            this.btTray.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(70)))), ((int)(((byte)(78)))));
-            this.btTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btTray.ForeColor = System.Drawing.Color.Black;
-            this.btTray.Image = ((System.Drawing.Image)(resources.GetObject("btTray.Image")));
-            this.btTray.Location = new System.Drawing.Point(270, 0);
-            this.btTray.Name = "btTray";
-            this.btTray.Size = new System.Drawing.Size(40, 30);
-            this.btTray.TabIndex = 4;
-            this.btTray.UseVisualStyleBackColor = true;
-            this.btTray.Click += new System.EventHandler(this.btTray_Click);
+            btTray.Dock = DockStyle.Right;
+            btTray.FlatAppearance.BorderSize = 0;
+            btTray.FlatAppearance.MouseDownBackColor = Color.FromArgb(79, 81, 89);
+            btTray.FlatAppearance.MouseOverBackColor = Color.FromArgb(68, 70, 78);
+            btTray.FlatStyle = FlatStyle.Flat;
+            btTray.ForeColor = Color.Black;
+            btTray.Image = (Image)resources.GetObject("btTray.Image");
+            btTray.Location = new Point(270, 0);
+            btTray.Name = "btTray";
+            btTray.Size = new Size(40, 30);
+            btTray.TabIndex = 4;
+            btTray.UseVisualStyleBackColor = true;
+            btTray.Click += btTray_Click;
             // 
             // topPanel
             // 
-            this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(38)))), ((int)(((byte)(48)))));
-            this.topPanel.Controls.Add(this.btTray);
-            this.topPanel.Controls.Add(this.btClose);
-            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topPanel.Location = new System.Drawing.Point(0, 0);
-            this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(350, 30);
-            this.topPanel.TabIndex = 5;
-            this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
+            topPanel.BackColor = Color.FromArgb(36, 38, 48);
+            topPanel.Controls.Add(btTray);
+            topPanel.Controls.Add(btClose);
+            topPanel.Dock = DockStyle.Top;
+            topPanel.Location = new Point(0, 0);
+            topPanel.Name = "topPanel";
+            topPanel.Size = new Size(350, 30);
+            topPanel.TabIndex = 5;
+            topPanel.MouseDown += topPanel_MouseDown;
             // 
             // sidebarTimer
             // 
-            this.sidebarTimer.Interval = 10;
+            sidebarTimer.Interval = 10;
             // 
             // SignUI
             // 
-            this.SignUI.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.SignUI.Controls.Add(this.SignInPage);
-            this.SignUI.Controls.Add(this.SignUpPage);
-            this.SignUI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SignUI.Location = new System.Drawing.Point(0, 80);
-            this.SignUI.Name = "SignUI";
-            this.SignUI.SelectedIndex = 0;
-            this.SignUI.Size = new System.Drawing.Size(350, 370);
-            this.SignUI.TabIndex = 6;
+            SignUI.Alignment = TabAlignment.Bottom;
+            SignUI.Controls.Add(SignInPage);
+            SignUI.Controls.Add(SignUpPage);
+            SignUI.Dock = DockStyle.Fill;
+            SignUI.Location = new Point(0, 80);
+            SignUI.Name = "SignUI";
+            SignUI.SelectedIndex = 0;
+            SignUI.Size = new Size(350, 370);
+            SignUI.TabIndex = 6;
             // 
             // SignInPage
             // 
-            this.SignInPage.Controls.Add(this.lblReg);
-            this.SignInPage.Controls.Add(this.SearchPanel);
-            this.SignInPage.Controls.Add(this.btSignIn);
-            this.SignInPage.Controls.Add(this.panel2);
-            this.SignInPage.Location = new System.Drawing.Point(4, 4);
-            this.SignInPage.Name = "SignInPage";
-            this.SignInPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SignInPage.Size = new System.Drawing.Size(342, 342);
-            this.SignInPage.TabIndex = 0;
-            this.SignInPage.Text = "Login";
-            this.SignInPage.UseVisualStyleBackColor = true;
+            SignInPage.Controls.Add(lblReg);
+            SignInPage.Controls.Add(SearchPanel);
+            SignInPage.Controls.Add(btSignIn);
+            SignInPage.Controls.Add(panel2);
+            SignInPage.Location = new Point(4, 4);
+            SignInPage.Name = "SignInPage";
+            SignInPage.Padding = new Padding(3);
+            SignInPage.Size = new Size(342, 342);
+            SignInPage.TabIndex = 0;
+            SignInPage.Text = "Login";
+            SignInPage.UseVisualStyleBackColor = true;
             // 
             // lblReg
             // 
-            this.lblReg.AutoSize = true;
-            this.lblReg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblReg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblReg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(158)))), ((int)(((byte)(253)))));
-            this.lblReg.Location = new System.Drawing.Point(110, 250);
-            this.lblReg.Name = "lblReg";
-            this.lblReg.Size = new System.Drawing.Size(121, 16);
-            this.lblReg.TabIndex = 11;
-            this.lblReg.Text = "Создать аккаунт";
-            this.lblReg.Click += new System.EventHandler(this.lblReg_Click);
-            this.lblReg.MouseEnter += new System.EventHandler(this.lblLog_MouseEnter);
-            this.lblReg.MouseLeave += new System.EventHandler(this.lblLog_MouseLeave);
+            lblReg.AutoSize = true;
+            lblReg.Cursor = Cursors.Hand;
+            lblReg.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblReg.ForeColor = Color.FromArgb(1, 158, 253);
+            lblReg.Location = new Point(110, 250);
+            lblReg.Name = "lblReg";
+            lblReg.Size = new Size(121, 16);
+            lblReg.TabIndex = 11;
+            lblReg.Text = "Создать аккаунт";
+            lblReg.Click += lblReg_Click;
+            lblReg.MouseEnter += lblLog_MouseEnter;
+            lblReg.MouseLeave += lblLog_MouseLeave;
             // 
             // SearchPanel
             // 
-            this.SearchPanel.BackColor = System.Drawing.Color.Transparent;
-            this.SearchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchPanel.Controls.Add(this.tbLogin);
-            this.SearchPanel.ForeColor = System.Drawing.Color.White;
-            this.SearchPanel.Location = new System.Drawing.Point(71, 80);
-            this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(200, 40);
-            this.SearchPanel.TabIndex = 8;
+            SearchPanel.BackColor = Color.Transparent;
+            SearchPanel.BorderStyle = BorderStyle.FixedSingle;
+            SearchPanel.Controls.Add(tbLogin);
+            SearchPanel.ForeColor = Color.White;
+            SearchPanel.Location = new Point(71, 80);
+            SearchPanel.Name = "SearchPanel";
+            SearchPanel.Size = new Size(200, 40);
+            SearchPanel.TabIndex = 8;
             // 
             // tbLogin
             // 
-            this.tbLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbLogin.BackColor = System.Drawing.SystemColors.Window;
-            this.tbLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLogin.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbLogin.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbLogin.Location = new System.Drawing.Point(10, 11);
-            this.tbLogin.MaxLength = 20;
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.PlaceholderText = "Логин";
-            this.tbLogin.Size = new System.Drawing.Size(150, 16);
-            this.tbLogin.TabIndex = 6;
+            tbLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbLogin.BackColor = SystemColors.Window;
+            tbLogin.BorderStyle = BorderStyle.None;
+            tbLogin.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbLogin.ForeColor = SystemColors.WindowText;
+            tbLogin.Location = new Point(10, 11);
+            tbLogin.MaxLength = 20;
+            tbLogin.Name = "tbLogin";
+            tbLogin.PlaceholderText = "Логин";
+            tbLogin.Size = new Size(150, 16);
+            tbLogin.TabIndex = 6;
             // 
             // btSignIn
             // 
-            this.btSignIn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(158)))), ((int)(((byte)(253)))));
-            this.btSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSignIn.FlatAppearance.BorderSize = 0;
-            this.btSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSignIn.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btSignIn.ForeColor = System.Drawing.Color.White;
-            this.btSignIn.Location = new System.Drawing.Point(71, 200);
-            this.btSignIn.MaximumSize = new System.Drawing.Size(200, 40);
-            this.btSignIn.MinimumSize = new System.Drawing.Size(200, 40);
-            this.btSignIn.Name = "btSignIn";
-            this.btSignIn.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btSignIn.Size = new System.Drawing.Size(200, 40);
-            this.btSignIn.TabIndex = 10;
-            this.btSignIn.Text = "Войти";
-            this.btSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btSignIn.UseVisualStyleBackColor = false;
-            this.btSignIn.Click += new System.EventHandler(this.btSignIn_Click);
+            btSignIn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btSignIn.BackColor = Color.FromArgb(1, 158, 253);
+            btSignIn.Cursor = Cursors.Hand;
+            btSignIn.FlatAppearance.BorderSize = 0;
+            btSignIn.FlatStyle = FlatStyle.Flat;
+            btSignIn.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btSignIn.ForeColor = Color.White;
+            btSignIn.Location = new Point(71, 200);
+            btSignIn.MaximumSize = new Size(200, 40);
+            btSignIn.MinimumSize = new Size(200, 40);
+            btSignIn.Name = "btSignIn";
+            btSignIn.Padding = new Padding(5, 0, 0, 0);
+            btSignIn.Size = new Size(200, 40);
+            btSignIn.TabIndex = 10;
+            btSignIn.Text = "Войти";
+            btSignIn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSignIn.UseVisualStyleBackColor = false;
+            btSignIn.Click += btSignIn_Click;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.cbPass);
-            this.panel2.Controls.Add(this.tbPassword);
-            this.panel2.ForeColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(71, 140);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 40);
-            this.panel2.TabIndex = 9;
+            panel2.BackColor = Color.Transparent;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(cbPass);
+            panel2.Controls.Add(tbPassword);
+            panel2.ForeColor = Color.White;
+            panel2.Location = new Point(71, 140);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(200, 40);
+            panel2.TabIndex = 9;
             // 
             // cbPass
             // 
-            this.cbPass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPass.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbPass.Location = new System.Drawing.Point(159, -1);
-            this.cbPass.Name = "cbPass";
-            this.cbPass.Size = new System.Drawing.Size(40, 40);
-            this.cbPass.TabIndex = 12;
-            this.cbPass.UseVisualStyleBackColor = true;
-            this.cbPass.CheckedChanged += new System.EventHandler(this.cbPass_CheckedChanged);
+            cbPass.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbPass.CheckAlign = ContentAlignment.MiddleCenter;
+            cbPass.Location = new Point(159, -1);
+            cbPass.Name = "cbPass";
+            cbPass.Size = new Size(40, 40);
+            cbPass.TabIndex = 12;
+            cbPass.UseVisualStyleBackColor = true;
+            cbPass.CheckedChanged += cbPass_CheckedChanged;
             // 
             // tbPassword
             // 
-            this.tbPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPassword.BackColor = System.Drawing.SystemColors.Window;
-            this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbPassword.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbPassword.Location = new System.Drawing.Point(10, 11);
-            this.tbPassword.MaxLength = 20;
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.PlaceholderText = "Пароль";
-            this.tbPassword.Size = new System.Drawing.Size(150, 16);
-            this.tbPassword.TabIndex = 6;
-            this.tbPassword.UseSystemPasswordChar = true;
+            tbPassword.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbPassword.BackColor = SystemColors.Window;
+            tbPassword.BorderStyle = BorderStyle.None;
+            tbPassword.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbPassword.ForeColor = SystemColors.WindowText;
+            tbPassword.Location = new Point(10, 11);
+            tbPassword.MaxLength = 20;
+            tbPassword.Name = "tbPassword";
+            tbPassword.PlaceholderText = "Пароль";
+            tbPassword.Size = new Size(150, 16);
+            tbPassword.TabIndex = 6;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // SignUpPage
             // 
-            this.SignUpPage.Controls.Add(this.panel6);
-            this.SignUpPage.Controls.Add(this.RegBirth);
-            this.SignUpPage.Controls.Add(this.lblLog);
-            this.SignUpPage.Controls.Add(this.panel5);
-            this.SignUpPage.Controls.Add(this.panel3);
-            this.SignUpPage.Controls.Add(this.btSignUp);
-            this.SignUpPage.Controls.Add(this.panel4);
-            this.SignUpPage.Location = new System.Drawing.Point(4, 4);
-            this.SignUpPage.Name = "SignUpPage";
-            this.SignUpPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SignUpPage.Size = new System.Drawing.Size(342, 342);
-            this.SignUpPage.TabIndex = 1;
-            this.SignUpPage.Text = "Register";
-            this.SignUpPage.UseVisualStyleBackColor = true;
+            SignUpPage.Controls.Add(panel6);
+            SignUpPage.Controls.Add(RegBirth);
+            SignUpPage.Controls.Add(lblLog);
+            SignUpPage.Controls.Add(panel5);
+            SignUpPage.Controls.Add(panel3);
+            SignUpPage.Controls.Add(btSignUp);
+            SignUpPage.Controls.Add(panel4);
+            SignUpPage.Location = new Point(4, 4);
+            SignUpPage.Name = "SignUpPage";
+            SignUpPage.Padding = new Padding(3);
+            SignUpPage.Size = new Size(342, 342);
+            SignUpPage.TabIndex = 1;
+            SignUpPage.Text = "Register";
+            SignUpPage.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Transparent;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.tbRegName);
-            this.panel6.ForeColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(71, 20);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 40);
-            this.panel6.TabIndex = 19;
+            panel6.BackColor = Color.Transparent;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(tbRegName);
+            panel6.ForeColor = Color.White;
+            panel6.Location = new Point(71, 20);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(200, 40);
+            panel6.TabIndex = 19;
             // 
             // tbRegName
             // 
-            this.tbRegName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRegName.BackColor = System.Drawing.SystemColors.Window;
-            this.tbRegName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbRegName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbRegName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbRegName.Location = new System.Drawing.Point(10, 11);
-            this.tbRegName.MaxLength = 20;
-            this.tbRegName.Name = "tbRegName";
-            this.tbRegName.PlaceholderText = "Имя";
-            this.tbRegName.Size = new System.Drawing.Size(169, 16);
-            this.tbRegName.TabIndex = 6;
+            tbRegName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbRegName.BackColor = SystemColors.Window;
+            tbRegName.BorderStyle = BorderStyle.None;
+            tbRegName.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbRegName.ForeColor = SystemColors.WindowText;
+            tbRegName.Location = new Point(10, 11);
+            tbRegName.MaxLength = 20;
+            tbRegName.Name = "tbRegName";
+            tbRegName.PlaceholderText = "Имя";
+            tbRegName.Size = new Size(169, 16);
+            tbRegName.TabIndex = 6;
             // 
             // RegBirth
             // 
-            this.RegBirth.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RegBirth.CalendarMonthBackground = System.Drawing.Color.White;
-            this.RegBirth.CalendarTitleBackColor = System.Drawing.Color.White;
-            this.RegBirth.CalendarTrailingForeColor = System.Drawing.Color.Black;
-            this.RegBirth.CustomFormat = "yyyy-MM-dd";
-            this.RegBirth.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RegBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.RegBirth.Location = new System.Drawing.Point(71, 204);
-            this.RegBirth.MaxDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
-            this.RegBirth.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
-            this.RegBirth.MinimumSize = new System.Drawing.Size(200, 40);
-            this.RegBirth.Name = "RegBirth";
-            this.RegBirth.Size = new System.Drawing.Size(200, 40);
-            this.RegBirth.TabIndex = 18;
-            this.RegBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            RegBirth.CalendarFont = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            RegBirth.CalendarMonthBackground = Color.White;
+            RegBirth.CalendarTitleBackColor = Color.White;
+            RegBirth.CalendarTrailingForeColor = Color.Black;
+            RegBirth.CustomFormat = "yyyy-MM-dd";
+            RegBirth.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            RegBirth.Format = DateTimePickerFormat.Custom;
+            RegBirth.Location = new Point(71, 204);
+            RegBirth.MaxDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            RegBirth.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
+            RegBirth.MinimumSize = new Size(200, 40);
+            RegBirth.Name = "RegBirth";
+            RegBirth.Size = new Size(200, 40);
+            RegBirth.TabIndex = 18;
+            RegBirth.Value = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // lblLog
             // 
-            this.lblLog.AutoSize = true;
-            this.lblLog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblLog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(158)))), ((int)(((byte)(253)))));
-            this.lblLog.Location = new System.Drawing.Point(83, 300);
-            this.lblLog.Name = "lblLog";
-            this.lblLog.Size = new System.Drawing.Size(175, 16);
-            this.lblLog.TabIndex = 15;
-            this.lblLog.Text = "У меня уже есть аккаунт";
-            this.lblLog.Click += new System.EventHandler(this.lblLog_Click);
-            this.lblLog.MouseEnter += new System.EventHandler(this.lblLog_MouseEnter);
-            this.lblLog.MouseLeave += new System.EventHandler(this.lblLog_MouseLeave);
+            lblLog.AutoSize = true;
+            lblLog.Cursor = Cursors.Hand;
+            lblLog.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblLog.ForeColor = Color.FromArgb(1, 158, 253);
+            lblLog.Location = new Point(83, 300);
+            lblLog.Name = "lblLog";
+            lblLog.Size = new Size(175, 16);
+            lblLog.TabIndex = 15;
+            lblLog.Text = "У меня уже есть аккаунт";
+            lblLog.Click += lblLog_Click;
+            lblLog.MouseEnter += lblLog_MouseEnter;
+            lblLog.MouseLeave += lblLog_MouseLeave;
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.tbRegSurname);
-            this.panel5.ForeColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(71, 66);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 40);
-            this.panel5.TabIndex = 14;
+            panel5.BackColor = Color.Transparent;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(tbRegSurname);
+            panel5.ForeColor = Color.White;
+            panel5.Location = new Point(71, 66);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(200, 40);
+            panel5.TabIndex = 14;
             // 
             // tbRegSurname
             // 
-            this.tbRegSurname.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRegSurname.BackColor = System.Drawing.SystemColors.Window;
-            this.tbRegSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbRegSurname.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbRegSurname.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbRegSurname.Location = new System.Drawing.Point(10, 11);
-            this.tbRegSurname.MaxLength = 20;
-            this.tbRegSurname.Name = "tbRegSurname";
-            this.tbRegSurname.PlaceholderText = "Фамилия";
-            this.tbRegSurname.Size = new System.Drawing.Size(171, 16);
-            this.tbRegSurname.TabIndex = 6;
+            tbRegSurname.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbRegSurname.BackColor = SystemColors.Window;
+            tbRegSurname.BorderStyle = BorderStyle.None;
+            tbRegSurname.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbRegSurname.ForeColor = SystemColors.WindowText;
+            tbRegSurname.Location = new Point(10, 11);
+            tbRegSurname.MaxLength = 20;
+            tbRegSurname.Name = "tbRegSurname";
+            tbRegSurname.PlaceholderText = "Фамилия";
+            tbRegSurname.Size = new Size(171, 16);
+            tbRegSurname.TabIndex = 6;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.tbRegLog);
-            this.panel3.ForeColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(71, 112);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 40);
-            this.panel3.TabIndex = 11;
+            panel3.BackColor = Color.Transparent;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(tbRegLog);
+            panel3.ForeColor = Color.White;
+            panel3.Location = new Point(71, 112);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(200, 40);
+            panel3.TabIndex = 11;
             // 
             // tbRegLog
             // 
-            this.tbRegLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRegLog.BackColor = System.Drawing.SystemColors.Window;
-            this.tbRegLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbRegLog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbRegLog.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbRegLog.Location = new System.Drawing.Point(10, 11);
-            this.tbRegLog.MaxLength = 20;
-            this.tbRegLog.Name = "tbRegLog";
-            this.tbRegLog.PlaceholderText = "Логин";
-            this.tbRegLog.Size = new System.Drawing.Size(173, 16);
-            this.tbRegLog.TabIndex = 6;
+            tbRegLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbRegLog.BackColor = SystemColors.Window;
+            tbRegLog.BorderStyle = BorderStyle.None;
+            tbRegLog.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbRegLog.ForeColor = SystemColors.WindowText;
+            tbRegLog.Location = new Point(10, 11);
+            tbRegLog.MaxLength = 20;
+            tbRegLog.Name = "tbRegLog";
+            tbRegLog.PlaceholderText = "Логин";
+            tbRegLog.Size = new Size(173, 16);
+            tbRegLog.TabIndex = 6;
             // 
             // btSignUp
             // 
-            this.btSignUp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(158)))), ((int)(((byte)(253)))));
-            this.btSignUp.FlatAppearance.BorderSize = 0;
-            this.btSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSignUp.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btSignUp.ForeColor = System.Drawing.Color.White;
-            this.btSignUp.Location = new System.Drawing.Point(71, 250);
-            this.btSignUp.MaximumSize = new System.Drawing.Size(200, 40);
-            this.btSignUp.MinimumSize = new System.Drawing.Size(200, 40);
-            this.btSignUp.Name = "btSignUp";
-            this.btSignUp.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btSignUp.Size = new System.Drawing.Size(200, 40);
-            this.btSignUp.TabIndex = 13;
-            this.btSignUp.Text = "Зарегистрироваться";
-            this.btSignUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btSignUp.UseVisualStyleBackColor = false;
-            this.btSignUp.Click += new System.EventHandler(this.btSignUp_Click);
+            btSignUp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btSignUp.BackColor = Color.FromArgb(1, 158, 253);
+            btSignUp.FlatAppearance.BorderSize = 0;
+            btSignUp.FlatStyle = FlatStyle.Flat;
+            btSignUp.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btSignUp.ForeColor = Color.White;
+            btSignUp.Location = new Point(71, 250);
+            btSignUp.MaximumSize = new Size(200, 40);
+            btSignUp.MinimumSize = new Size(200, 40);
+            btSignUp.Name = "btSignUp";
+            btSignUp.Padding = new Padding(5, 0, 0, 0);
+            btSignUp.Size = new Size(200, 40);
+            btSignUp.TabIndex = 13;
+            btSignUp.Text = "Зарегистрироваться";
+            btSignUp.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSignUp.UseVisualStyleBackColor = false;
+            btSignUp.Click += btSignUp_Click;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.tbRegPass);
-            this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(71, 158);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 40);
-            this.panel4.TabIndex = 12;
+            panel4.BackColor = Color.Transparent;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(tbRegPass);
+            panel4.ForeColor = Color.White;
+            panel4.Location = new Point(71, 158);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(200, 40);
+            panel4.TabIndex = 12;
             // 
             // tbRegPass
             // 
-            this.tbRegPass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRegPass.BackColor = System.Drawing.SystemColors.Window;
-            this.tbRegPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbRegPass.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbRegPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbRegPass.Location = new System.Drawing.Point(10, 11);
-            this.tbRegPass.MaxLength = 20;
-            this.tbRegPass.Name = "tbRegPass";
-            this.tbRegPass.PlaceholderText = "Пароль";
-            this.tbRegPass.Size = new System.Drawing.Size(173, 16);
-            this.tbRegPass.TabIndex = 6;
+            tbRegPass.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbRegPass.BackColor = SystemColors.Window;
+            tbRegPass.BorderStyle = BorderStyle.None;
+            tbRegPass.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            tbRegPass.ForeColor = SystemColors.WindowText;
+            tbRegPass.Location = new Point(10, 11);
+            tbRegPass.MaxLength = 20;
+            tbRegPass.Name = "tbRegPass";
+            tbRegPass.PlaceholderText = "Пароль";
+            tbRegPass.Size = new Size(173, 16);
+            tbRegPass.TabIndex = 6;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(70)))), ((int)(((byte)(79)))));
-            this.panel1.Controls.Add(this.lblTab);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 50);
-            this.panel1.TabIndex = 7;
+            panel1.BackColor = Color.FromArgb(69, 70, 79);
+            panel1.Controls.Add(lblTab);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 30);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(350, 50);
+            panel1.TabIndex = 7;
             // 
             // lblTab
             // 
-            this.lblTab.AutoEllipsis = true;
-            this.lblTab.AutoSize = true;
-            this.lblTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTab.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTab.ForeColor = System.Drawing.Color.White;
-            this.lblTab.Location = new System.Drawing.Point(20, 13);
-            this.lblTab.Name = "lblTab";
-            this.lblTab.Size = new System.Drawing.Size(151, 25);
-            this.lblTab.TabIndex = 5;
-            this.lblTab.Text = "Авторизация";
+            lblTab.AutoEllipsis = true;
+            lblTab.AutoSize = true;
+            lblTab.FlatStyle = FlatStyle.Flat;
+            lblTab.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTab.ForeColor = Color.White;
+            lblTab.Location = new Point(20, 13);
+            lblTab.Name = "lblTab";
+            lblTab.Size = new Size(151, 25);
+            lblTab.TabIndex = 5;
+            lblTab.Text = "Авторизация";
             // 
             // AuthForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 450);
-            this.Controls.Add(this.SignUI);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.topPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AuthForm";
-            this.Text = "AuthForm";
-            this.topPanel.ResumeLayout(false);
-            this.SignUI.ResumeLayout(false);
-            this.SignInPage.ResumeLayout(false);
-            this.SignInPage.PerformLayout();
-            this.SearchPanel.ResumeLayout(false);
-            this.SearchPanel.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.SignUpPage.ResumeLayout(false);
-            this.SignUpPage.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(350, 450);
+            Controls.Add(SignUI);
+            Controls.Add(panel1);
+            Controls.Add(topPanel);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "AuthForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "AuthForm";
+            topPanel.ResumeLayout(false);
+            SignUI.ResumeLayout(false);
+            SignInPage.ResumeLayout(false);
+            SignInPage.PerformLayout();
+            SearchPanel.ResumeLayout(false);
+            SearchPanel.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            SignUpPage.ResumeLayout(false);
+            SignUpPage.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

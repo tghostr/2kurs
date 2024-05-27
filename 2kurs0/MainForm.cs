@@ -18,6 +18,7 @@ namespace _2kurs0
 {
     public partial class MainForm : Form
     {
+        string isComp = "";
         private btMenu currentBtn;
         bool sidebarExpand;
         private MySqlDataAdapter adapterReq = new MySqlDataAdapter();
@@ -53,6 +54,8 @@ namespace _2kurs0
                 AuthorizationPage.Parent = null;
                 RequestPage.Parent = null;*/
             }
+            cBoxComp.SelectedIndex = 0;
+
         }
 
 
@@ -99,7 +102,7 @@ namespace _2kurs0
             deleteBtColumn.DefaultCellStyle.BackColor = Color.LightCoral;
             deleteBtColumn.UseColumnTextForButtonValue = true;
             deleteBtColumn.FlatStyle = FlatStyle.Flat;
-            int columnDIndex = colindex +1;
+            int columnDIndex = colindex + 1;
             if (dgv.Columns["Delete"] == null)
             {
                 dgv.Columns.Insert(columnDIndex, deleteBtColumn);
@@ -230,6 +233,7 @@ namespace _2kurs0
             ActivateButton(sender);
             TabControl.SelectedTab = AuthorizationPage;
             lblTab.Text = btMenuAuth.TabName;
+            
         }
 
         private void btMenuRequest_Click(object sender, EventArgs e)
@@ -243,6 +247,16 @@ namespace _2kurs0
             ActivateButton(sender);
             TabControl.SelectedTab = NewRequestPage;
             lblTab.Text = btMenuNewRequest.TabName;
+            if (btMax.Visible == false)
+            {
+                dgvNewRequest.Width = 831;
+                dgvNewRequest.Location = new Point(968, 100);
+            }
+            else if(btMax.Visible == true)
+            {
+                dgvNewRequest.Width = 350;
+                dgvNewRequest.Location = new Point(426, 100);
+            }
         }
         private void btMenuProfile_Click(object sender, EventArgs e)
         {
@@ -277,6 +291,9 @@ namespace _2kurs0
             button1.Location = new Point(857, 150);
             button3.Location = new Point(1809, 150);
             button2.Location = new Point(1809, 195);
+            ReloadReq();
+            DisplayE();
+            DisplayM();
         }
         private void btMin_Click(object sender, EventArgs e)
         {
@@ -292,6 +309,9 @@ namespace _2kurs0
             button1.Location = new Point(376, 150);
             button3.Location = new Point(781, 150);
             button2.Location = new Point(781, 195);
+            ReloadReq();
+            DisplayE();
+            DisplayM();
         }
         private void btTray_Click(object sender, EventArgs e)
         {
@@ -318,7 +338,7 @@ namespace _2kurs0
         {
             try
             {
-                
+
                 dataSet.Tables["request"].Clear();
 
                 adapterReq.Fill(dataSet, "request");
@@ -351,23 +371,23 @@ namespace _2kurs0
 
             dgvRequest.Columns[0].HeaderText = "#";
             dgvRequest.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[0].FillWeight = 35;
+            dgvRequest.Columns[0].FillWeight = 55;
             dgvRequest.Columns[0].ReadOnly = true;
             dgvRequest.Columns[1].HeaderText = "Имя";
             dgvRequest.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[1].FillWeight = 100;
+            dgvRequest.Columns[1].FillWeight = 80;
             dgvRequest.Columns[2].HeaderText = "Фамилия";
             dgvRequest.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[2].FillWeight = 100;
+            dgvRequest.Columns[2].FillWeight = 95;
             dgvRequest.Columns[3].HeaderText = "Дата создания";
             dgvRequest.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[3].FillWeight = 85;
+            dgvRequest.Columns[3].FillWeight = 80;
             dgvRequest.Columns[4].HeaderText = "Код Оборудования";
             dgvRequest.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[4].FillWeight = 90;
+            dgvRequest.Columns[4].FillWeight = 103;
             dgvRequest.Columns[5].HeaderText = "Код Материала";
             dgvRequest.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvRequest.Columns[5].FillWeight = 90;
+            dgvRequest.Columns[5].FillWeight = 87;
             dgvRequest.Columns[6].HeaderText = "Количество";
             dgvRequest.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvRequest.Columns[6].FillWeight = 100;
@@ -375,14 +395,37 @@ namespace _2kurs0
         }
         public void MyReq()
         {
+            string line = "";
+
             DB dbMyR = new DB();
             DataTable tableMyR = new DataTable();
             MySqlDataAdapter adapterMyR = new MySqlDataAdapter();
-            MySqlCommand commandMyR = new MySqlCommand("SELECT request.idrequest, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial where `staff_idStaff` = @Sid", dbMyR.getConnection());
+            if (cBoxComp.SelectedItem == "Все")
+            {
+                line = "SELECT request.idrequest, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request " +
+                "LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment " +
+                "LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial " +
+                "where `staff_idStaff` = @Sid";
+            }
+            if (cBoxComp.SelectedItem == "Выполненные")
+            {
+                line = "SELECT request.idrequest, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request " +
+                "LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment " +
+                "LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial " +
+                "where `staff_idStaff` = @Sid and `requestcomplete` = '+';";
+            }
+            if (cBoxComp.SelectedItem == "Ожидаются")
+            {
+                line = "SELECT request.idrequest, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request " +
+                "LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment " +
+                "LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial " +
+                "where `staff_idStaff` = @Sid and `requestcomplete` is null;";
+            }
+            MySqlCommand commandMyR = new MySqlCommand(line, dbMyR.getConnection());
             commandMyR.Parameters.Add("@Sid", MySqlDbType.VarChar).Value = Global.GlobalVar;
             adapterMyR.SelectCommand = commandMyR;
             adapterMyR.Fill(tableMyR);
-            dgvЫ.DataSource = tableMyR;
+            dgvMyReq.DataSource = tableMyR;
 
             dgvMyReq.Columns[0].HeaderText = "#";
             dgvMyReq.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -517,13 +560,13 @@ namespace _2kurs0
             dgvAuth.Columns[3].FillWeight = 100;
             dgvAuth.Columns[4].HeaderText = "Пароль";
             dgvAuth.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[4].FillWeight = 150;
+            dgvAuth.Columns[4].FillWeight = 100;
             dgvAuth.Columns[5].HeaderText = "Уровень доступа";
             dgvAuth.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[5].FillWeight = 100;
+            dgvAuth.Columns[5].FillWeight = 75;
             dgvAuth.Columns[6].HeaderText = "Подтверждение";
             dgvAuth.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvAuth.Columns[6].FillWeight = 25;
+            dgvAuth.Columns[6].FillWeight = 100;
             #endregion
             #region MyRequest FILL
 
@@ -764,7 +807,7 @@ namespace _2kurs0
                 form.numberM = dgvMaterial.Rows[e.RowIndex].Cells[6].Value.ToString();
                 form.UpdateMInfo();
                 form.ShowDialog();
-
+                DisplayM();
                 return;
             }
             if (e.ColumnIndex == 1)
@@ -832,7 +875,7 @@ namespace _2kurs0
 
                         DB db = new DB();
                         MySqlCommand commandMD = new MySqlCommand("DELETE FROM `request` WHERE `idrequest` = @Rid", db.getConnection());
-                        commandMD.Parameters.Add("@Rid", MySqlDbType.VarChar).Value = dgvRequest.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        commandMD.Parameters.Add("@Rid", MySqlDbType.VarChar).Value = dgvRequest.Rows[e.RowIndex].Cells[2].Value.ToString();
                         db.openConnection();
                         try
                         {
@@ -845,13 +888,13 @@ namespace _2kurs0
                             MessageBox.Show("Заявка не удалена \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         db.closeConnection();
-                        dgvRequest.DataSource = null;
+                        // dgvRequest.DataSource = null;
                         ReloadReq();
-                        DisplayR();
+                        //DisplayR();
                     }
                     return;
                 }
-                else if(e.ColumnIndex == 0)
+                else if (e.ColumnIndex == 0)
                 {
                     if (MessageBox.Show("Подтверждение выполнения", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
@@ -929,11 +972,11 @@ namespace _2kurs0
                     }
                     return;
 
-                    
+
 
                 }
             }
-            catch(MySqlException ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (MySqlException ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
         private void btConfirmAuth_Click(object sender, EventArgs e)
         {
@@ -960,35 +1003,6 @@ namespace _2kurs0
                 db.closeConnection();
 
                 DisplayA();
-            }
-            return;
-        }
-        private void btDeleteStaff_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Удалить пользователя?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-                string Aid = dgvAuth.CurrentRow.Cells[0].Value.ToString();
-
-                //string id = dgvAuth.Rows[].Cells[2].Value.ToString();
-
-                DB db = new DB();
-                MySqlCommand commandEA = new MySqlCommand("UPDATE `authorization` SET `confirm` = @Aconfirm WHERE `idAuthorization` = @Aid;", db.getConnection());
-                commandEA.Parameters.Add("@Aid", MySqlDbType.VarChar).Value = Aid;
-                commandEA.Parameters.Add("@Aconfirm", MySqlDbType.VarChar).Value = 1;
-                db.openConnection();
-                try
-                {
-                    commandEA.ExecuteNonQuery();
-                    MessageBox.Show("Пользователь подтвержден", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Пользователь не подтвержден \n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                db.closeConnection();
-
-                DisplayA();
-                DisplayS();
             }
             return;
         }
@@ -1181,7 +1195,16 @@ namespace _2kurs0
                     commandNewR.Parameters.Add("@Number", MySqlDbType.Int32).Value = dgvNewRequest.Rows[i].Cells[3].Value.ToString();
 
                     dbNewR.openConnection();
-                    commandNewR.ExecuteNonQuery();
+                    try
+                    {
+                        commandNewR.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Введите корректное количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     dbNewR.closeConnection();
                 }
                 MessageBox.Show("Заявка добавлена");
@@ -1207,7 +1230,15 @@ namespace _2kurs0
                     commandNewR.Parameters.Add("@Number", MySqlDbType.Int32).Value = dgvNewRequest.Rows[i].Cells[3].Value.ToString();
 
                     dbNewR.openConnection();
-                    commandNewR.ExecuteNonQuery();
+                    try
+                    {
+                        commandNewR.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Введите корректное количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     dbNewR.closeConnection();
                 }
                 MessageBox.Show("Заявка добавлена");
@@ -1231,6 +1262,38 @@ namespace _2kurs0
                 printer.printDocument.DefaultPageSettings.Landscape = true;
                 printer.PrintDataGridView(dgvNewRequest);
             }
+        }
+
+        private void cBoxComp_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            if (e.Index > -1)
+                e.Graphics.DrawString(cBoxComp.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds);
+        }
+
+        private void cBoxComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cBoxComp.SelectedIndex)
+            {
+                case 0:
+                    isComp = " ";
+                    MyReq();
+                    break;
+                case 1:
+                    isComp = " and `requestcomplete` = '+';";
+                    MyReq();
+                    break;
+                case 2:
+                    isComp = " and `requestcomplete` is null;";
+                    MyReq();
+                    break;
+            }
+            MyReq();
+        }
+
+        private void cBoxComp_TextChanged(object sender, EventArgs e)
+        {
+            MyReq();
         }
     }
 }

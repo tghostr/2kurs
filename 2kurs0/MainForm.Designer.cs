@@ -72,7 +72,6 @@
             StaffSearchPanel = new Panel();
             pictureBox2 = new PictureBox();
             tbStaffSearch = new TextBox();
-            btDeleteStaff = new Button();
             AuthorizationPage = new TabPage();
             btConfirmAuth = new Button();
             dgvAuth = new DataGridView();
@@ -103,6 +102,7 @@
             dgvEqNewReq = new DataGridView();
             ProfilePage = new TabPage();
             gbDGVMyReq = new GroupBox();
+            cBoxComp = new ComboBox();
             dgvMyReq = new DataGridView();
             gbProfileInfo = new GroupBox();
             panel5 = new Panel();
@@ -520,7 +520,6 @@
             // 
             StaffPage.Controls.Add(dgvStaff);
             StaffPage.Controls.Add(StaffSearchPanel);
-            StaffPage.Controls.Add(btDeleteStaff);
             StaffPage.Location = new Point(4, 4);
             StaffPage.Name = "StaffPage";
             StaffPage.Padding = new Padding(3);
@@ -610,28 +609,6 @@
             tbStaffSearch.Size = new Size(280, 16);
             tbStaffSearch.TabIndex = 6;
             tbStaffSearch.TextChanged += tbStaffSearch_TextChanged;
-            // 
-            // btDeleteStaff
-            // 
-            btDeleteStaff.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btDeleteStaff.BackColor = Color.FromArgb(1, 158, 253);
-            btDeleteStaff.FlatAppearance.BorderSize = 0;
-            btDeleteStaff.FlatStyle = FlatStyle.Flat;
-            btDeleteStaff.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btDeleteStaff.ForeColor = Color.White;
-            btDeleteStaff.Image = (Image)resources.GetObject("btDeleteStaff.Image");
-            btDeleteStaff.ImageAlign = ContentAlignment.MiddleRight;
-            btDeleteStaff.Location = new Point(681, 40);
-            btDeleteStaff.MaximumSize = new Size(140, 40);
-            btDeleteStaff.MinimumSize = new Size(140, 40);
-            btDeleteStaff.Name = "btDeleteStaff";
-            btDeleteStaff.Padding = new Padding(3, 0, 0, 0);
-            btDeleteStaff.Size = new Size(140, 40);
-            btDeleteStaff.TabIndex = 9;
-            btDeleteStaff.Text = "  Удалить";
-            btDeleteStaff.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btDeleteStaff.UseVisualStyleBackColor = false;
-            btDeleteStaff.Click += btDeleteStaff_Click;
             // 
             // AuthorizationPage
             // 
@@ -1201,6 +1178,7 @@
             // 
             gbDGVMyReq.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbDGVMyReq.BackColor = Color.White;
+            gbDGVMyReq.Controls.Add(cBoxComp);
             gbDGVMyReq.Controls.Add(dgvMyReq);
             gbDGVMyReq.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             gbDGVMyReq.ForeColor = Color.DimGray;
@@ -1210,6 +1188,27 @@
             gbDGVMyReq.TabIndex = 34;
             gbDGVMyReq.TabStop = false;
             gbDGVMyReq.Text = "Ваши заявки";
+            // 
+            // cBoxComp
+            // 
+            cBoxComp.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cBoxComp.BackColor = Color.White;
+            cBoxComp.DisplayMember = "1";
+            cBoxComp.DrawMode = DrawMode.OwnerDrawFixed;
+            cBoxComp.DropDownStyle = ComboBoxStyle.DropDownList;
+            cBoxComp.FlatStyle = FlatStyle.Flat;
+            cBoxComp.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            cBoxComp.ForeColor = Color.DimGray;
+            cBoxComp.ItemHeight = 16;
+            cBoxComp.Items.AddRange(new object[] { "Все", "Выполненные", "Ожидаются" });
+            cBoxComp.Location = new Point(575, -5);
+            cBoxComp.MinimumSize = new Size(160, 0);
+            cBoxComp.Name = "cBoxComp";
+            cBoxComp.Size = new Size(160, 22);
+            cBoxComp.TabIndex = 35;
+            cBoxComp.DrawItem += cBoxComp_DrawItem;
+            cBoxComp.SelectedIndexChanged += cBoxComp_SelectedIndexChanged;
+            cBoxComp.TextChanged += cBoxComp_TextChanged;
             // 
             // dgvMyReq
             // 
@@ -1287,11 +1286,11 @@
             lblNamePlace.AutoEllipsis = true;
             lblNamePlace.AutoSize = true;
             lblNamePlace.FlatStyle = FlatStyle.Flat;
-            lblNamePlace.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNamePlace.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblNamePlace.ForeColor = Color.DimGray;
             lblNamePlace.Location = new Point(10, 8);
             lblNamePlace.Name = "lblNamePlace";
-            lblNamePlace.Size = new Size(48, 23);
+            lblNamePlace.Size = new Size(49, 22);
             lblNamePlace.TabIndex = 28;
             lblNamePlace.Text = "Имя";
             // 
@@ -1326,11 +1325,11 @@
             lblSurnamePlace.AutoEllipsis = true;
             lblSurnamePlace.AutoSize = true;
             lblSurnamePlace.FlatStyle = FlatStyle.Flat;
-            lblSurnamePlace.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSurnamePlace.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblSurnamePlace.ForeColor = Color.DimGray;
             lblSurnamePlace.Location = new Point(10, 8);
             lblSurnamePlace.Name = "lblSurnamePlace";
-            lblSurnamePlace.Size = new Size(94, 23);
+            lblSurnamePlace.Size = new Size(99, 22);
             lblSurnamePlace.TabIndex = 29;
             lblSurnamePlace.Text = "Фамилия";
             // 
@@ -1365,6 +1364,7 @@
             BirthDateP.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
             BirthDateP.MinimumSize = new Size(200, 40);
             BirthDateP.Name = "BirthDateP";
+            BirthDateP.RightToLeft = RightToLeft.No;
             BirthDateP.RightToLeftLayout = true;
             BirthDateP.Size = new Size(400, 40);
             BirthDateP.TabIndex = 29;
@@ -1775,7 +1775,6 @@
         private Panel StaffSearchPanel;
         private PictureBox pictureBox2;
         private TextBox tbStaffSearch;
-        private Button btDeleteStaff;
         private Panel AuthSearchPanel;
         private PictureBox pictureBox3;
         private TextBox tbAuthSearch;
@@ -1822,5 +1821,6 @@
         private DataGridViewTextBoxColumn Unit;
         private DataGridViewTextBoxColumn Number;
         private Button button2;
+        private ComboBox cBoxComp;
     }
 }

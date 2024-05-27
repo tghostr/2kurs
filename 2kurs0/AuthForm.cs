@@ -34,7 +34,7 @@ namespace _2kurs0
 
         private void btClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btTray_Click(object sender, EventArgs e)
