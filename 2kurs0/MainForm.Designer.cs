@@ -864,7 +864,7 @@
             // 
             // button2
             // 
-            button2.Anchor = AnchorStyles.Right;
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button2.BackColor = Color.FromArgb(1, 158, 253);
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
@@ -929,7 +929,7 @@
             // 
             // button3
             // 
-            button3.Anchor = AnchorStyles.Right;
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button3.BackColor = Color.FromArgb(1, 158, 253);
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
@@ -1474,6 +1474,7 @@
             lblLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblLogin.AutoEllipsis = true;
             lblLogin.AutoSize = true;
+            lblLogin.Cursor = Cursors.Hand;
             lblLogin.FlatStyle = FlatStyle.Flat;
             lblLogin.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblLogin.ForeColor = Color.White;

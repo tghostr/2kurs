@@ -151,7 +151,7 @@ namespace _2kurs0
                     {
                         Global.GlobalVar = command2.ExecuteScalar().ToString();
                         DB db3 = new DB();
-                        tbRegName.Text = Global.GlobalVar;
+                        //tbRegName.Text = Global.GlobalVar;
                         var passUser = Hash.hashPassword(tbRegPass.Text);
                         DataTable table3 = new DataTable();
                         MySqlCommand command3 = new MySqlCommand("INSERT INTO `authorization`(`idstaff`, `login`, `pass`, `perms`, `confirm`) VALUES(@ID, @uL, @uP, @perm, @confirm);", db3.getConnection());

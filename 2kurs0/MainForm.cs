@@ -233,7 +233,7 @@ namespace _2kurs0
             ActivateButton(sender);
             TabControl.SelectedTab = AuthorizationPage;
             lblTab.Text = btMenuAuth.TabName;
-            
+
         }
 
         private void btMenuRequest_Click(object sender, EventArgs e)
@@ -251,11 +251,15 @@ namespace _2kurs0
             {
                 dgvNewRequest.Width = 831;
                 dgvNewRequest.Location = new Point(968, 100);
+
             }
-            else if(btMax.Visible == true)
+            else if (btMax.Visible == true)
             {
                 dgvNewRequest.Width = 350;
                 dgvNewRequest.Location = new Point(426, 100);
+                button1.Location = new Point(376, 150);
+                button3.Location = new Point(781, 150);
+                button2.Location = new Point(781, 195);
             }
         }
         private void btMenuProfile_Click(object sender, EventArgs e)
@@ -294,6 +298,7 @@ namespace _2kurs0
             ReloadReq();
             DisplayE();
             DisplayM();
+
         }
         private void btMin_Click(object sender, EventArgs e)
         {
@@ -448,6 +453,8 @@ namespace _2kurs0
 
             //Global.GlobalVar = "1";
             ReqFILL();
+            ReloadReq();
+
             MyReq();
             #region Equipment FILL
             DB dbE = new DB();
@@ -1003,6 +1010,7 @@ namespace _2kurs0
                 db.closeConnection();
 
                 DisplayA();
+                DisplayS();
             }
             return;
         }
@@ -1109,10 +1117,13 @@ namespace _2kurs0
                     {
                         items[i] = row.Cells[i].Value;
                     }
+                    
                     //items[3] = row.Cells[3].Value = 1;
                     //dgvNewRequest.Rows.Add(items);
-                    items[3] = row.Cells[3].Value = 1;
-                    MainForm_Load(sender, e);
+                    //items[3] = row.Cells[3].Value = 1;
+                    
+                    //MainForm_Load(sender, e);
+                    ReloadReq();
                     dgvNewRequest.Rows.Add(items);
 
                     // fromDGV.Rows.Delete(row);
@@ -1127,8 +1138,9 @@ namespace _2kurs0
                     {
                         items[i] = row.Cells[i].Value;
                     }
-                    items[3] = row.Cells[3].Value = 1;
-                    MainForm_Load(sender, e);
+                    //items[3] = row.Cells[3].Value = 1;
+                    //MainForm_Load(sender, e);
+                    ReloadReq();
                     dgvNewRequest.Rows.Add(items);
                     // fromDGV.Rows.Delete(row);
                 }
@@ -1169,7 +1181,7 @@ namespace _2kurs0
         {
             if (cbRequestOption.Text == "")
                 MessageBox.Show("Выберите таблицу ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            
 
             DB dbNewR = new DB();
             MySqlCommand commandNewR;
@@ -1185,7 +1197,9 @@ namespace _2kurs0
                 {
                     if (dgvNewRequest.Rows[i].Cells[3].Value == null)
                     {
-                        dgvNewRequest.Rows[i].Cells[3].Value = 1;
+                        MessageBox.Show("Введите корректное количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                        //dgvNewRequest.Rows[i].Cells[3].Value = 1;
                     }
                     commandNewR = new MySqlCommand("INSERT INTO `request`(`staff_idStaff`, `reqdata`, `equipment_idequipment`, `reqnumber`) VALUES(@ID, @DataRN, @Equipment, @Number)", dbNewR.getConnection());
 
@@ -1245,8 +1259,10 @@ namespace _2kurs0
             }
             if (dgvNewRequest.Rows.Count > 0)
             {
-                ReqFILL();
+                //ReqFILL();
+                ReloadReq();
                 MyReq();
+                button2_Click(sender, e);
                 DateTime datereq = DateTime.Now;
                 string formdate = datereq.ToString("yyyy.MM.dd HH:mm:ss");
                 DGVPrinter printer = new DGVPrinter();
@@ -1295,5 +1311,6 @@ namespace _2kurs0
         {
             MyReq();
         }
+
     }
 }
