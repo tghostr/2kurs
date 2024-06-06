@@ -114,6 +114,7 @@
             // 
             // EditEquip
             // 
+            EditEquip.BackColor = Color.White;
             EditEquip.Controls.Add(panel2);
             EditEquip.Controls.Add(panel7);
             EditEquip.Controls.Add(panel8);
@@ -125,7 +126,6 @@
             EditEquip.Size = new Size(342, 342);
             EditEquip.TabIndex = 0;
             EditEquip.Text = "Equip";
-            EditEquip.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -249,6 +249,7 @@
             // 
             // EditMaterial
             // 
+            EditMaterial.BackColor = Color.White;
             EditMaterial.Controls.Add(panel6);
             EditMaterial.Controls.Add(panel5);
             EditMaterial.Controls.Add(panel3);
@@ -260,7 +261,6 @@
             EditMaterial.Size = new Size(342, 342);
             EditMaterial.TabIndex = 1;
             EditMaterial.Text = "Material";
-            EditMaterial.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
@@ -384,6 +384,7 @@
             // 
             // EditStaff
             // 
+            EditStaff.BackColor = Color.White;
             EditStaff.Controls.Add(panel10);
             EditStaff.Controls.Add(panel11);
             EditStaff.Controls.Add(panel12);
@@ -395,7 +396,6 @@
             EditStaff.Size = new Size(342, 342);
             EditStaff.TabIndex = 2;
             EditStaff.Text = "Staff";
-            EditStaff.UseVisualStyleBackColor = true;
             // 
             // panel10
             // 
@@ -518,13 +518,13 @@
             // 
             // EditRequest
             // 
+            EditRequest.BackColor = Color.White;
             EditRequest.Location = new Point(4, 4);
             EditRequest.Name = "EditRequest";
             EditRequest.Padding = new Padding(3);
             EditRequest.Size = new Size(342, 342);
             EditRequest.TabIndex = 3;
             EditRequest.Text = "Request";
-            EditRequest.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -572,6 +572,7 @@
             Controls.Add(panel1);
             Controls.Add(topPanel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Edit";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit";

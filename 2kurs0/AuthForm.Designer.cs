@@ -132,6 +132,7 @@
             // 
             // SignInPage
             // 
+            SignInPage.BackColor = Color.White;
             SignInPage.Controls.Add(lblReg);
             SignInPage.Controls.Add(SearchPanel);
             SignInPage.Controls.Add(btSignIn);
@@ -142,7 +143,6 @@
             SignInPage.Size = new Size(342, 342);
             SignInPage.TabIndex = 0;
             SignInPage.Text = "Login";
-            SignInPage.UseVisualStyleBackColor = true;
             // 
             // lblReg
             // 
@@ -245,6 +245,7 @@
             // 
             // SignUpPage
             // 
+            SignUpPage.BackColor = Color.White;
             SignUpPage.Controls.Add(panel6);
             SignUpPage.Controls.Add(RegBirth);
             SignUpPage.Controls.Add(lblLog);
@@ -258,7 +259,6 @@
             SignUpPage.Size = new Size(342, 342);
             SignUpPage.TabIndex = 1;
             SignUpPage.Text = "Register";
-            SignUpPage.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
@@ -445,6 +445,7 @@
             Controls.Add(panel1);
             Controls.Add(topPanel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AuthForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AuthForm";

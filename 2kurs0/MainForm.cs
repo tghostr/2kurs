@@ -35,7 +35,8 @@ namespace _2kurs0
 
             form = new Edit(this);
             ActivateButton(btMenuEquip);
-
+            if (Global.GlobalPerms == "2")
+                btConfirmAuth.Visible = false;
             if (Global.GlobalPerms == "1")
             {
 
@@ -484,7 +485,11 @@ namespace _2kurs0
             dgvEquip.Columns[5].HeaderText = "Стоимость";
             dgvEquip.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvEquip.Columns[5].FillWeight = 100;
-            addColumns(dgvEquip, 6);
+            if(Global.GlobalPerms == "0")
+            {
+                addColumns(dgvEquip, 6);
+            }
+            
 
 
             #endregion
@@ -516,7 +521,12 @@ namespace _2kurs0
             dgvMaterial.Columns[5].HeaderText = "Стоимость";
             dgvMaterial.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvMaterial.Columns[5].FillWeight = 100;
-            addColumns(dgvMaterial, 6);
+            if (Global.GlobalPerms == "0")
+            {
+                addColumns(dgvMaterial, 6);
+            }
+            
+
             #endregion
             #region Staff FILL
             DB dbS = new DB();
@@ -530,18 +540,18 @@ namespace _2kurs0
 
             dgvStaff.Columns[0].HeaderText = "#";
             dgvStaff.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //dgvStaff.Columns[0].FillWeight = 35;
             dgvStaff.Columns[0].ReadOnly = true;
             dgvStaff.Columns[1].HeaderText = "Имя";
             dgvStaff.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //dgvStaff.Columns[1].FillWeight = 220;
             dgvStaff.Columns[2].HeaderText = "Фамилия";
             dgvStaff.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //dgvStaff.Columns[2].FillWeight = 85;
             dgvStaff.Columns[3].HeaderText = "Дата Рождения";
             dgvStaff.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //dgvStaff.Columns[3].FillWeight = 75;
-            adddeleteColumns(dgvStaff, 4);
+            if (Global.GlobalPerms == "0")
+            {
+                adddeleteColumns(dgvStaff, 4);
+            }
+            
             #endregion
             #region Auth FILL
             DB dbA = new DB();
@@ -673,23 +683,43 @@ namespace _2kurs0
         #region Display
         public void DisplayE()
         {
-            EditEquipment.DisplayAndSearch("SELECT `idequipment`, `emname`, `emunit`, `emprice`, `emnumber`, `emcost` FROM `equipment`", dgvEquip);
+            try
+            {
+                EditEquipment.DisplayAndSearch("SELECT `idequipment`, `emname`, `emunit`, `emprice`, `emnumber`, `emcost` FROM `equipment`", dgvEquip);
+            }
+            catch { }
         }
         public void DisplayM()
         {
-            EditMaterial.DisplayAndSearch("SELECT `idmaterial`, `maname`, `maunit`, `maprice`, `manumber`, `macost` FROM `material`", dgvMaterial);
+            try
+            {
+                EditMaterial.DisplayAndSearch("SELECT `idmaterial`, `maname`, `maunit`, `maprice`, `manumber`, `macost` FROM `material`", dgvMaterial);
+            }
+            catch { }
         }
         public void DisplayS()
         {
-            EditEquipment.DisplayAndSearch("SELECT `idStaff`, `name`, `surname`, `birthdate` FROM `staff`", dgvStaff);
+            try
+            {
+                EditEquipment.DisplayAndSearch("SELECT `idStaff`, `name`, `surname`, `birthdate` FROM `staff`", dgvStaff);
+            }
+            catch { }
         }
         public void DisplayA()
         {
-            EditEquipment.DisplayAndSearch("SELECT `idAuthorization`, `idstaff`, `login`, `pass`, `perms`, `confirm` FROM `authorization`", dgvAuth);
+            try
+            {
+                EditEquipment.DisplayAndSearch("SELECT `idAuthorization`, `idstaff`, `login`, `pass`, `perms`, `confirm` FROM `authorization`", dgvAuth);
+            }
+            catch { }
         }
         public void DisplayR()
         {
-            EditEquipment.DisplayAndSearch("SELECT `idrequest`, `staff_idStaff`, `reqdata`, `equipment_idequipment`, `material_idmaterial`, `reqnumber` FROM `request`", dgvRequest);
+            try
+            {
+                EditEquipment.DisplayAndSearch("SELECT `idrequest`, `staff_idStaff`, `reqdata`, `equipment_idequipment`, `material_idmaterial`, `reqnumber` FROM `request`", dgvRequest);
+            }
+            catch { }
         }
         #endregion
         private void btAddEquip_Click(object sender, EventArgs e)
@@ -729,7 +759,12 @@ namespace _2kurs0
             {
                 tbEquipSearch.Text = "";
             }
-            EditEquipment.DisplayAndSearch("SELECT * FROM equipment WHERE CONCAT(`idequipment`, `emname`, `emunit`, `emprice`, `emnumber`, `emcost`) like '%" + tbEquipSearch.Text + "%'", dgvEquip);
+            try
+            {
+                EditEquipment.DisplayAndSearch("SELECT * FROM equipment WHERE CONCAT(`idequipment`, `emname`, `emunit`, `emprice`, `emnumber`, `emcost`)" +
+                    " like '%" + tbEquipSearch.Text + "%'", dgvEquip);
+            }
+            catch { }
         }
         private void tbMaterialSearch_TextChanged(object sender, EventArgs e)
         {
@@ -737,7 +772,11 @@ namespace _2kurs0
             {
                 tbMaterialSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT * FROM material WHERE CONCAT(`idmaterial`, `maname`, `maunit`, `maprice`, `manumber`, `macost`) like '%" + tbMaterialSearch.Text + "%'", dgvMaterial);
+            try
+            {
+                EditMaterial.DisplayAndSearch("SELECT * FROM material WHERE CONCAT(`idmaterial`, `maname`, `maunit`, `maprice`, `manumber`, `macost`) like '%" + tbMaterialSearch.Text + "%'", dgvMaterial);
+            }
+            catch { }
         }
         private void tbStaffSearch_TextChanged(object sender, EventArgs e)
         {
@@ -745,7 +784,11 @@ namespace _2kurs0
             {
                 tbStaffSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT * FROM staff WHERE CONCAT(`idStaff`, `name`, `surname`, `birthdate`) like '%" + tbStaffSearch.Text + "%'", dgvStaff);
+            try
+            {
+                EditMaterial.DisplayAndSearch("SELECT * FROM staff WHERE CONCAT(`idStaff`, `name`, `surname`, `birthdate`) like '%" + tbStaffSearch.Text + "%'", dgvStaff);
+            }
+            catch { }
         }
         private void tbAuthSearch_TextChanged(object sender, EventArgs e)
         {
@@ -753,7 +796,11 @@ namespace _2kurs0
             {
                 tbAuthSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT idAuthorization, staff.name, staff.surname, login, pass, perms, confirm FROM `ISPr23-35_TazetdinovRR_kurs`.authorization LEFT OUTER JOIN staff ON authorization.idstaff = staff.idStaff WHERE CONCAT(idAuthorization, staff.name, staff.surname, login, pass, perms, confirm) like '%" + tbAuthSearch.Text + "%'", dgvAuth);
+            try
+            {
+                EditMaterial.DisplayAndSearch("SELECT idAuthorization, staff.name, staff.surname, login, pass, perms, confirm FROM `ISPr23-35_TazetdinovRR_kurs`.authorization LEFT OUTER JOIN staff ON authorization.idstaff = staff.idStaff WHERE CONCAT(idAuthorization, staff.name, staff.surname, login, pass, perms, confirm) like '%" + tbAuthSearch.Text + "%'", dgvAuth);
+            }
+            catch { }
         }
         private void tbRequestSearch_TextChanged(object sender, EventArgs e)
         {
@@ -761,17 +808,29 @@ namespace _2kurs0
             {
                 tbRequestSearch.Text = "";
             }
-            EditMaterial.DisplayAndSearch("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff WHERE concat_ws(idrequest, name, surname, reqdata, emname, maname, reqnumber) like '%" + tbRequestSearch.Text + "%'", dgvRequest);
+            try
+            {
+                EditMaterial.DisplayAndSearch("SELECT request.idrequest, staff.name, staff.surname, request.reqdata, equipment.emname, material.maname, request.reqnumber FROM `ISPr23-35_TazetdinovRR_kurs`.request LEFT OUTER JOIN equipment ON request.equipment_idequipment = equipment.idequipment LEFT OUTER JOIN material ON request.material_idmaterial = material.idmaterial LEFT OUTER JOIN staff ON request.staff_idStaff = staff.idStaff WHERE concat_ws(idrequest, name, surname, reqdata, emname, maname, reqnumber) like '%" + tbRequestSearch.Text + "%'", dgvRequest);
+            }
+            catch { }
         }
         private void tbSearchEM_TextChanged(object sender, EventArgs e)
         {
             if (cbRequestOption.SelectedItem == "Оборудование")
             {
-                EditEquipment.DisplayAndSearch("SELECT `idequipment`, `emname`, `emunit`, `emnumber` FROM equipment WHERE CONCAT(`idequipment`, `emname`, `emunit`, `emnumber`) like '%" + tbSearchEM.Text + "%'", dgvEqNewReq);
+                try
+                {
+                    EditEquipment.DisplayAndSearch("SELECT `idequipment`, `emname`, `emunit`, `emnumber` FROM equipment WHERE CONCAT(`idequipment`, `emname`, `emunit`, `emnumber`) like '%" + tbSearchEM.Text + "%'", dgvEqNewReq);
+                }
+                catch { }
             }
             if (cbRequestOption.SelectedItem == "Материалы")
             {
-                EditMaterial.DisplayAndSearch("SELECT `idmaterial`, `maname`, `maunit`, `manumber` FROM material WHERE CONCAT(`idmaterial`, `maname`, `maunit`, `manumber`) like '%" + tbSearchEM.Text + "%'", dgvMaNewReq);
+                try
+                {
+                    EditMaterial.DisplayAndSearch("SELECT `idmaterial`, `maname`, `maunit`, `manumber` FROM material WHERE CONCAT(`idmaterial`, `maname`, `maunit`, `manumber`) like '%" + tbSearchEM.Text + "%'", dgvMaNewReq);
+                }
+                catch { }
             }
         }
         #endregion

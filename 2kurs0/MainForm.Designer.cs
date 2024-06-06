@@ -365,7 +365,7 @@
             // tbEquipSearch
             // 
             tbEquipSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tbEquipSearch.BackColor = SystemColors.Window;
+            tbEquipSearch.BackColor = Color.White;
             tbEquipSearch.BorderStyle = BorderStyle.None;
             tbEquipSearch.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             tbEquipSearch.ForeColor = SystemColors.WindowText;
@@ -401,6 +401,7 @@
             // 
             // MaterialPage
             // 
+            MaterialPage.BackColor = Color.White;
             MaterialPage.Controls.Add(dgvMaterial);
             MaterialPage.Controls.Add(MaterialSearchPanel);
             MaterialPage.Controls.Add(btAddMaterial);
@@ -410,7 +411,6 @@
             MaterialPage.Size = new Size(842, 542);
             MaterialPage.TabIndex = 1;
             MaterialPage.Text = "MP";
-            MaterialPage.UseVisualStyleBackColor = true;
             // 
             // dgvMaterial
             // 
@@ -518,6 +518,7 @@
             // 
             // StaffPage
             // 
+            StaffPage.BackColor = Color.White;
             StaffPage.Controls.Add(dgvStaff);
             StaffPage.Controls.Add(StaffSearchPanel);
             StaffPage.Location = new Point(4, 4);
@@ -526,7 +527,6 @@
             StaffPage.Size = new Size(842, 542);
             StaffPage.TabIndex = 2;
             StaffPage.Text = "SP";
-            StaffPage.UseVisualStyleBackColor = true;
             // 
             // dgvStaff
             // 
@@ -612,6 +612,7 @@
             // 
             // AuthorizationPage
             // 
+            AuthorizationPage.BackColor = Color.White;
             AuthorizationPage.Controls.Add(btConfirmAuth);
             AuthorizationPage.Controls.Add(dgvAuth);
             AuthorizationPage.Controls.Add(AuthSearchPanel);
@@ -621,7 +622,6 @@
             AuthorizationPage.Size = new Size(842, 542);
             AuthorizationPage.TabIndex = 3;
             AuthorizationPage.Text = "AP";
-            AuthorizationPage.UseVisualStyleBackColor = true;
             // 
             // btConfirmAuth
             // 
@@ -728,6 +728,7 @@
             // 
             // RequestPage
             // 
+            RequestPage.BackColor = Color.White;
             RequestPage.Controls.Add(dgvRequest);
             RequestPage.Controls.Add(RequestSearchPanel);
             RequestPage.Controls.Add(btAddRequest);
@@ -737,7 +738,6 @@
             RequestPage.Size = new Size(842, 542);
             RequestPage.TabIndex = 4;
             RequestPage.Text = "RP";
-            RequestPage.UseVisualStyleBackColor = true;
             // 
             // dgvRequest
             // 
@@ -845,6 +845,7 @@
             // 
             // NewRequestPage
             // 
+            NewRequestPage.BackColor = Color.White;
             NewRequestPage.Controls.Add(button2);
             NewRequestPage.Controls.Add(dgvMaNewReq);
             NewRequestPage.Controls.Add(button3);
@@ -860,7 +861,6 @@
             NewRequestPage.Size = new Size(842, 542);
             NewRequestPage.TabIndex = 5;
             NewRequestPage.Text = "NRP";
-            NewRequestPage.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -1163,6 +1163,7 @@
             // 
             // ProfilePage
             // 
+            ProfilePage.BackColor = Color.White;
             ProfilePage.Controls.Add(gbDGVMyReq);
             ProfilePage.Controls.Add(gbProfileInfo);
             ProfilePage.Controls.Add(gbChangePass);
@@ -1172,7 +1173,6 @@
             ProfilePage.Size = new Size(842, 542);
             ProfilePage.TabIndex = 6;
             ProfilePage.Text = "PP";
-            ProfilePage.UseVisualStyleBackColor = true;
             // 
             // gbDGVMyReq
             // 
@@ -1626,7 +1626,7 @@
             btMenuProfile.Name = "btMenuProfile";
             btMenuProfile.Size = new Size(50, 50);
             btMenuProfile.TabIndex = 5;
-            btMenuProfile.TabName = "Пользователь";
+            btMenuProfile.TabName = "Профиль";
             btMenuProfile.Click += btMenuProfile_Click;
             // 
             // btMenuNewRequest
@@ -1675,6 +1675,7 @@
             Controls.Add(topPanel);
             Controls.Add(TabControl);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
